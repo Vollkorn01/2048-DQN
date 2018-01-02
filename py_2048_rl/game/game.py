@@ -37,6 +37,12 @@ class Game(object):
     else:
       self._state = state
 
+  def new_game(self, initial_score=0):
+      self._score = initial_score
+      self._state = np.zeros((4, 4), dtype=np.int)
+      self.add_random_tile()
+      self.add_random_tile()
+
   def copy(self):
     """Return a copy of self."""
 
@@ -143,10 +149,10 @@ class Game(object):
         return '% 5d' % (2 ** value,)
       return "     "
 
-    print "-" * 25
+    print("-" * 25)
     for row in range(4):
-      print "|" + "|".join([tile_string(v) for v in self._state[row, :]]) + "|"
-      print "-" * 25
+      print("|" + "|".join([tile_string(v) for v in self._state[row, :]]) + "|")
+      print("-" * 25)
 
   def state(self):
     """Return current state."""
